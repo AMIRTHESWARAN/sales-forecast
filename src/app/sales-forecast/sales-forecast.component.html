@@ -1,0 +1,68 @@
+<!-- <div>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="fromYYMM">From Year-Month</label>
+    <input type="month" id="fromYYMM" formControlName="fromDate" >
+  </div>
+  <div class="form-group">
+    <label for="toYYMM">To Year-Month</label>
+    <input type="month" id="toYYMM" formControlName="toDate" >
+  </div>
+  <div class="form-group">
+    <label for="file">Select file</label>
+    <input type="file" id="file" (change)="onFileSelect($event)">
+  </div>
+  <button  type="submit" pButton pRipple label="Predict" icon="pi pi-chart-line" class="mr-3 p-button-raised"></button>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+ -->
+
+<div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- <p-calendar formControlName="fromDate"></p-calendar> -->
+    <p-toolbar>
+    <div class="form-group">
+      <label for="fromYYMM" class="text-900 font-medium mb-2">From : </label>
+      <p-calendar view="month" dateFormat="mm yy" formControlName="fromDate"></p-calendar>
+      <!-- <input type="month" id="fromYYMM" formControlName="fromDate" > -->
+    </div>
+    <div class="form-group">
+      <label for="toYYMM" class="text-900 font-medium mb-2">To : </label>
+      <p-calendar view="month" dateFormat="mm yy" formControlName="toDate"></p-calendar>
+      <!-- <input type="month" id="toYYMM" formControlName="toDate" > -->
+    <!-- <p-fileUpload mode="basic" id="file" name="demo[]" accept=".csv" (change)="onFileSelect($event)" [auto]="true" chooseLabel="Upload"></p-fileUpload> -->
+    </div>
+    <!-- <div class="form-group"> -->
+      <!-- <label for="file">Select file</label> -->
+      <!-- <p-fileUpload mode="basic" name="myfile" (onUpload)="onSelectImage($event)"></p-fileUpload> -->
+      <div class="form-group">
+
+      <p-fileUpload
+      [auto]="true"
+      [files]="externalFiles"
+      name="demo[]"
+      #uploader
+      [multiple]="false"
+      accept=".csv"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      (onSelect)="onSelectImage($event.files)"
+      >
+  </p-fileUpload>
+  </div>
+      <!-- <input class="mr-3 p-button-raised" type="file" id="file" (change)="onFileSelect($event)"> -->
+    <!-- </div> -->
+    <button  type="submit" pButton pRipple label="Predict" icon="pi pi-chart-line" class="mr-3 p-button-raised"></button>
+    <!-- </div> -->
+  </p-toolbar>
+  </form>
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+
+  <div class="chart" >
+    <p-chart [type]="'line'" [data]="data" [options]="options"></p-chart>
+  </div>
+  </div>
